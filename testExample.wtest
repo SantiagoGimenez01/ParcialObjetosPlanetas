@@ -1,0 +1,35 @@
+import construcciones.*
+import personas.*
+import planetas.*
+
+describe "Primer testeo" {
+  const carlitos = new Persona(edad = 80, recursos = 5000)
+  const pepito = new Persona(edad = 65)
+  const fulanito = new Persona(edad = 12)
+  const menganito = new Persona(edad = 32, recursos = 280)
+  const unaMuralla = new Muralla(longitud = 45)
+  const otraMuralla = new Muralla(longitud = 60)
+  const unMuseo = new Museo(superficieCubierta = 50, indiceImportancia = 3)
+  const otroMuseo = new Museo(superficieCubierta = 10, indiceImportancia = 5)
+  const unPlaneta = new Planeta(habitantes = #{carlitos, pepito, fulanito, menganito}, construcciones = #{unaMuralla, otraMuralla, unMuseo})
+  const otroPlaneta = new Planeta(habitantes = #{carlitos, fulanito, menganito}, construcciones = #{unaMuralla, otroMuseo})
+  test "1er test pedido" {
+    assert.equals(#{carlitos, pepito, menganito}, unPlaneta.delegacionDiplomatica())
+    assert.that(unPlaneta.esValioso())
+    assert.notThat(otroPlaneta.esValioso())
+  }
+
+  test "2do test pedido" {
+//Algunos Cambios
+    menganito.ganarMonedas(3000)
+    carlitos.gastarMonedas(4975)
+    pepito.cumplirAnios()
+    fulanito.ganarMonedas(50)
+    unPlaneta.agregarConstruccion(otroMuseo)
+
+    assert.equals(#{menganito, fulanito}, unPlaneta.delegacionDiplomatica())
+    assert.notThat(unPlaneta.esValioso())
+    assert.notThat(otroPlaneta.esValioso())
+  }
+  
+}
