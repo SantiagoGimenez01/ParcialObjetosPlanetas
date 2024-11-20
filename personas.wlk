@@ -7,4 +7,5 @@ class Persona{
     method ganarMonedas(cantidad){ recursos += cantidad }
     method gastarMonedas(cantidad){ recursos -= cantidad }
     method cumplirAnios(){ edad += 1 }
+    method recursos() = recursos
 }
