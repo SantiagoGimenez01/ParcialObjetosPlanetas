@@ -10,6 +10,10 @@ class Planeta{
     method agregarConstruccion(construccion){ construcciones.add(construccion) }
     method viveAlli(alguien) = habitantes.contains(alguien)
     method cantidadDeConstrucciones() = construcciones.size()
+    method delegacionTrabaja(tiempo){
+        self.delegacionDiplomatica().forEach({integrante => integrante.trabajar(self, tiempo)})
+    }
+    method invadir(otroPlaneta, tiempo){ otroPlaneta.delegacionDiplomatica().forEach({integrante => integrante.trabajar(self, tiempo)}) }
 }
 
 object montania{

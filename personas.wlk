@@ -10,6 +10,7 @@ class Persona{
     method gastarMonedas(cantidad){ recursos -= cantidad }
     method cumplirAnios(){ edad += 1 }
     method recursos() = recursos
+    method trabajar(planeta, tiempo){}
 }
 
 class Productor inherits Persona{
@@ -27,7 +28,7 @@ class Productor inherits Persona{
     }
     method conoce(tecnica) = tecnicas.contains(tecnica)
     method aprender(tecnica){ tecnicas.add(tecnica) }
-    method trabajar(planeta, tiempo){ 
+    override method trabajar(planeta, tiempo){ 
         if(!planeta.viveAlli(self))
             throw new DomainException(message="El productor no puede realizar el trabajo en ese planeta ya que no vive alli")
         self.realizar(self.ultimaTecnica(), tiempo)
@@ -43,7 +44,7 @@ class Constructor inherits Persona{
     override method recursos() = super() + 10 * construccionesRealizadas
     override method esDestacado() = self.realizoSuficientesConstrucciones()
     method realizoSuficientesConstrucciones() = construccionesRealizadas > 5
-    method trabajar(planeta, tiempo){
+    override method trabajar(planeta, tiempo){
         self.gastarMonedas(5)
         const nuevaConstruccion = region.construir(self, tiempo)
         self.sumarConstrucion()
