@@ -1,8 +1,9 @@
 import construcciones.*
 import personas.*
 import planetas.*
+import tecnicas.*
 
-describe "Primer testeo" {
+describe "Delegacion diplomatica y planetas valiosos" {
   const carlitos = new Persona(edad = 80, recursos = 5000)
   const pepito = new Persona(edad = 65)
   const fulanito = new Persona(edad = 12)
@@ -19,7 +20,7 @@ describe "Primer testeo" {
     assert.notThat(otroPlaneta.esValioso())
   }
 
-  test "2do test pedido" {
+  test "Habitantes gastan/ganan monedas, cumplen años y los valores cambian" {
 //Algunos Cambios
     menganito.ganarMonedas(3000)
     carlitos.gastarMonedas(4975)
@@ -32,4 +33,23 @@ describe "Primer testeo" {
     assert.notThat(otroPlaneta.esValioso())
   }
   
+}
+
+describe "Segundo testeo" {
+  const carlitos = new Productor(edad = 40, recursos = 5000)
+  const pepito = new Constructor(edad = 21, region = montania, inteligencia = 20)
+  const fulanito = new Constructor(edad = 53, region = costa, construccionesRealizadas = 6)
+  const menganito = new Constructor(edad = 32, recursos = 280, region = llanura, construccionesRealizadas = 2)
+  const unPlaneta = new Planeta(habitantes = #{carlitos, pepito, fulanito, menganito}, construcciones = #{})
+  const otroPlaneta = new Planeta(habitantes = #{fulanito, menganito}, construcciones = #{})
+  test "Trabajan bien" {
+    carlitos.trabajar(unPlaneta, 5)
+    pepito.trabajar(otroPlaneta, 10)
+    fulanito.trabajar(unPlaneta, 4)
+    menganito.trabajar(otroPlaneta, 8)
+    assert.equals(5015, carlitos.recursos())
+    assert.equals(2, otroPlaneta.cantidadDeConstrucciones())
+    assert.equals(1, unPlaneta.cantidadDeConstrucciones())
+  }
+
 }

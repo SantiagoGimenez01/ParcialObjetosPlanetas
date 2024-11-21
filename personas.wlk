@@ -12,8 +12,8 @@ class Persona{
     method recursos() = recursos
 }
 
-class Productos inherits Persona{
-    const tecnicas = #{cultivo}
+class Productor inherits Persona{
+    const tecnicas = [cultivo]
 
     override method recursos() = super() * tecnicas.size()
     override method esDestacado() = super() || self.conoceSuficientesTecnicas()
@@ -36,9 +36,9 @@ class Productos inherits Persona{
 }
 
 class Constructor inherits Persona{
-    var construccionesRealizadas
+    var construccionesRealizadas = 0
     const region
-    const property inteligencia
+    const property inteligencia = 10
 
     override method recursos() = super() + 10 * construccionesRealizadas
     override method esDestacado() = self.realizoSuficientesConstrucciones()

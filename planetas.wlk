@@ -9,6 +9,7 @@ class Planeta{
     method esValioso() = construcciones.all({construccion => construccion.valor() > 100})
     method agregarConstruccion(construccion){ construcciones.add(construccion) }
     method viveAlli(alguien) = habitantes.contains(alguien)
+    method cantidadDeConstrucciones() = construcciones.size()
 }
 
 object montania{
