@@ -34,3 +34,20 @@ class Productos inherits Persona{
     }
     method ultimaTecnica() = tecnicas.last()
 }
+
+class Constructor inherits Persona{
+    var construccionesRealizadas
+    const region
+    const property inteligencia
+
+    override method recursos() = super() + 10 * construccionesRealizadas
+    override method esDestacado() = self.realizoSuficientesConstrucciones()
+    method realizoSuficientesConstrucciones() = construccionesRealizadas > 5
+    method trabajar(planeta, tiempo){
+        self.gastarMonedas(5)
+        const nuevaConstruccion = region.construir(self, tiempo)
+        self.sumarConstrucion()
+        planeta.agregarConstruccion(nuevaConstruccion)
+    }
+    method sumarConstrucion(){ construccionesRealizadas += 1 }
+}
